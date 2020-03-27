@@ -55,7 +55,7 @@ const ColorList = ({ colors, updateColors }) => {
   };
 
   const changeHandler = event => {
-    if (event.target.name == "code") {
+    if (event.target.name === "code") {
       setColorToEdit({ ...colorToEdit, code: { hex: event.target.value } });
     } else {
       setColorToEdit({
@@ -64,6 +64,7 @@ const ColorList = ({ colors, updateColors }) => {
       });
     }
   };
+
   const submitHandler = event => {
     event.preventDefault();
     axiosWithAuth()
@@ -90,7 +91,6 @@ const ColorList = ({ colors, updateColors }) => {
                   deleteColor(color);
                 }}
               >
-                x
               </span>{" "}
               {color.color}
             </span>
@@ -133,6 +133,12 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      <form onSubmit={submitHandler}>
+        Add Color:
+        <input name="color" onChange={changeHandler} placeholder="color name"/>
+        <input name="code" onChange={changeHandler} placeholder="hex code" />
+        <button>Add Color</button>
+      </form>
     </div>
   );
 };
